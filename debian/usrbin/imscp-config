@@ -1,0 +1,66 @@
+#!/bin/sh
+#
+# i-MSCP ConfigScript Debian
+# Version: 0.2
+# License: GPLv2
+# Author : i-MSCP Team, DragonZX
+# Credits: i-MSCP Development Team
+#----------------------------------
+# Varibles and functions
+version='1.1.12'
+
+echo '
+--------------------------------
+Welcome to i-MSCP installation.
+--------------------------------
+Choose what you want to do:
+1) Install an i-MSCP 
+2) Reconfigure i-MSCP
+3) Debug mode
+4) Uninstall an i-MSCP
+5) Exit the installer' 
+read -p "Enter your choice [1-3] " choice
+# Installation of a version
+if [ $choice -eq 1 ] ; then
+    #==== Start i-MSCP installer ====
+	aptitude update && aptitude -y safe-upgrade
+    aptitude -y install bzip2 wget tar
+    perl /usr/local/src/imscp/imscp-$version/imscp-autoinstall "$@"
+    exit			
+	# Redownload i-MSCP
+elif [ $choice -eq 2 ] ; then
+	rm -fR /usr/local/src/imscp/
+    mkdir -p /usr/local/src/imscp
+    cd /usr/local/src/imscp
+    aptitude update && aptitude -y safe-upgrade
+    aptitude -y install bzip2 wget tar
+	echo '#### DOWNLOADING the latest i-MSCP version ####'
+    wget https://github.com/i-MSCP/imscp/archive/$version.tar.gz
+    tar xvfz $version.tar.gz
+    cd imscp-$version
+    #==== Start i-MSCP installer ====
+    perl imscp-autoinstall -r
+    exit			
+	# Uninsall i-MSCP
+elif [ $choice -eq 3 ] ; then
+	rm -fR /usr/local/src/imscp/
+	mkdir -p /usr/local/src/imscp
+    cd /usr/local/src/imscp
+    aptitude update && aptitude -y safe-upgrade
+    aptitude -y install bzip2 wget tar
+	echo '#### DOWNLOADING the latest i-MSCP version version ####'
+    wget https://github.com/i-MSCP/imscp/archive/$version.tar.gz
+    tar xvfz $version.tar.gz
+    cd imscp-$version
+    #==== Start i-MSCP installer ====
+    perl imscp-autoinstall -d
+    exit			
+	# Uninsall i-MSCP
+elif [ $choice -eq 4 ] ; then
+	echo '#### UNINSTALLING an i-MSCP ####'
+    cd /var/www/imscp/engine/setup
+    perl imscp-uninstall
+    exit
+else
+exit
+fi
