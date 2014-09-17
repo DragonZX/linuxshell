@@ -1,6 +1,6 @@
 #!/bin/bash
-# расскоментировать, если пакетов нет
-ver=3.16
+ver=3.16.2
+# uncomment it if you don't have developer packages
 #apt-get -y install kernel-package libncurses5-dev fakeroot wget build-essential bc
 echo Installing $ver
 cd /usr/src
@@ -12,7 +12,7 @@ cd /usr/src/linux
 cp /boot/config-`uname -r` ./.config
 make oldconfig
 # make menuconfig
-# раскомментировать если понадобилось поменять конфигурацию
+# uncomment it if you want to reconfigure the kernel
 make-kpkg clean
 fakeroot make-kpkg --initrd kernel_image kernel_headers kernel_doc kernel_source
 cd /usr/src
