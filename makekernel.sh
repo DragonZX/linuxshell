@@ -1,5 +1,5 @@
 #!/bin/bash
-ver=3.16.3
+ver=3.17.4
 # uncomment it if you don't have developer packages
 apt-get -y install make kernel-package libncurses5-dev fakeroot wget build-essential bc
 echo Installing $ver
