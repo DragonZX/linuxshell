@@ -7,7 +7,7 @@
 # Credits: i-MSCP Development Team
 #----------------------------------
 # Varibles and functions
-version='1.1.18'
+version='1.2.1'
 
 echo '
 --------------------------------
@@ -75,6 +75,7 @@ elif [ $choice -eq 5 ] ; then
 	tar cvf imscp.bkp imscpbkp
 	cp imscp.bkp /root/imscp.bkp
 	echo Take it from root directory
+	cd /root
 	exit
 elif [ $choice -eq 6 ] ; then
 	echo '#### Restoring an i-MSCP ####'
@@ -87,6 +88,7 @@ elif [ $choice -eq 6 ] ; then
 	tar xvfj config.txz -c /etc/imscp 
 	mysql -u root -p < imscp.sql
 	rm f /root/imscp.bkp
+	cd /root
 	echo Restoring complete
 	exit
 else
