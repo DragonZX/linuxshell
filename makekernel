@@ -1,18 +1,18 @@
 #!/bin/bash
-read -p 'Which version of the kernel do you want to install?' ver
+read -p 'Which version of the kernel do you want to install (at least 3.0.0)?' ver
 read -p 'Skip the download [y/N]' skip
-read -p 'Do you want to install developer packages? [Y/n]' dev
+read -p 'Do you want to install developer packages? [y/N]' dev
 read -p 'Do you want to reconfigure the kernel manually? [y/N]' manual
 read -p 'Do you want to remove the kernel after installation? [y/N]' remdeb
 case $dev in
             y|Y*)  apt-get -y install make kernel-package libncurses5-dev fakeroot wget build-essential bc ;;
             n|N*)  echo "Developer package installation has been skipped" ;;
-			*) apt-get -y install make kernel-package libncurses5-dev fakeroot wget build-essential bc ;;
+			*) echo "Developer package installation has been skipped" ;;
 esac
 echo Installing linux kernel $ver
 cd /usr/src
 case $skip in
-            y|Y*)  echo "Sources download has been skipped" ;; ;;
+            y|Y*)  echo "Sources download has been skipped" ;;
             n|N*)  wget kernel.org/pub/linux/kernel/v3.x/linux-$ver.tar.xz ;;
 			*) apt-get -y install make kernel-package libncurses5-dev fakeroot wget build-essential bc ;;
 esac
