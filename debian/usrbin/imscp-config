@@ -1,13 +1,14 @@
 #!/bin/sh
 #
 # i-MSCP ConfigScript Debian
-# Version: 0.3
+# Version: 0.4
 # License: GPLv2
 # Author : i-MSCP Team, DragonZX
 # Credits: i-MSCP Development Team
 #----------------------------------
 # Varibles and functions
-version='1.2.1'
+
+read -p 'Which version of i-MSCP do you want to install (ie 1.2.0)?' version
 
 echo '
 --------------------------------
@@ -67,7 +68,7 @@ elif [ $choice -eq 5 ] ; then
 	echo '#### Backuping an i-MSCP ####'
 	mkdir /tmp/imscpbkp
 	cd /tmp/imscpbkp
-	mysqldump -u root -p -all-databases > imscp.sql
+	mysqldump -u root -p --all-databases > imscp.sql
 	tar cvfj www.txz /var/www/virtual
 	tar cvfj mail.txz /var/mail/virtual
 	tar cvfj config.txz /etc/imscp 
