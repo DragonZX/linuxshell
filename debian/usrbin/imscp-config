@@ -8,7 +8,7 @@
 #----------------------------------
 # Varibles and functions
 
-read -p 'Which version of i-MSCP do you want to install (ie 1.2.0)?' version
+read -p 'Which version of i-MSCP do you want to install (i.e. 1.2.0)? :' version
 
 echo '
 --------------------------------
@@ -21,7 +21,7 @@ Choose what you want to do:
 4) Uninstall an i-MSCP
 5) Full backup of i-MSCP (experimental)
 6) Full restore of i-MSCP (experimental)
-5) Exit the installer' 
+7) Exit the installer' 
 read -p "Enter your choice [1-7] " choice
 # Installation of a version
 if [ $choice -eq 1 ] ; then
@@ -66,9 +66,10 @@ elif [ $choice -eq 4 ] ; then
     exit
 elif [ $choice -eq 5 ] ; then
 	echo '#### Backuping an i-MSCP ####'
+	read -p 'Please enter the MySQL root password: ' mypass
 	mkdir /tmp/imscpbkp
 	cd /tmp/imscpbkp
-	mysqldump -u root -p --all-databases > imscp.sql
+	mysqldump -u root --password=$mypass --all-databases > imscp.sql
 	tar cvfj www.txz /var/www/virtual
 	tar cvfj mail.txz /var/mail/virtual
 	tar cvfj config.txz /etc/imscp 
@@ -80,6 +81,7 @@ elif [ $choice -eq 5 ] ; then
 	exit
 elif [ $choice -eq 6 ] ; then
 	echo '#### Restoring an i-MSCP ####'
+	read -p 'Please enter the MySQL root password: ' mypass
 	mkdir /tmp/imscpbkp
 	cp /root/imscp.bkp /tmp/imscp.bkp
 	tar xvf imscp.bkp
@@ -87,7 +89,7 @@ elif [ $choice -eq 6 ] ; then
 	tar xvfj www.txz -c /var/www/virtual
 	tar xvfj mail.txz -c /var/mail/virtual
 	tar xvfj config.txz -c /etc/imscp 
-	mysql -u root -p < imscp.sql
+	mysql -u root --password=$mypass < imscp.sql
 	rm f /root/imscp.bkp
 	cd /root
 	echo Restoring complete
