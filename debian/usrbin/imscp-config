@@ -67,12 +67,13 @@ elif [ $choice -eq 4 ] ; then
 elif [ $choice -eq 5 ] ; then
 	echo '#### Backuping an i-MSCP ####'
 	read -p 'Please enter the MySQL root password: ' mypass
+	apt-get -y install bzip2 xz-utils
 	mkdir /tmp/imscpbkp
 	cd /tmp/imscpbkp
 	mysqldump -u root --password=$mypass --all-databases > imscp.sql
-	tar cvfj www.txz /var/www/virtual
-	tar cvfj mail.txz /var/mail/virtual
-	tar cvfj config.txz /etc/imscp 
+	tar cvfJ www.txz /var/www/virtual
+	tar cvfJ mail.txz /var/mail/virtual
+	tar cvfJ config.txz /etc/imscp 
 	cd ..
 	tar cvf imscp.bkp imscpbkp
 	cp imscp.bkp /root/imscp.bkp
@@ -82,14 +83,15 @@ elif [ $choice -eq 5 ] ; then
 elif [ $choice -eq 6 ] ; then
 	echo '#### Restoring an i-MSCP ####'
 	read -p 'Please enter the MySQL root password: ' mypass
+	apt-get -y install bzip2 xz-utils
 	mkdir /tmp/imscpbkp
 	cp /root/imscp.bkp /tmp/imscp.bkp
 	cd /tmp
 	tar xvf imscp.bkp
 	cd /tmp/imscpbkp
-	tar xvfj www.txz -C /var/www/virtual
-	tar xvfj mail.txz -C /var/mail/virtual
-	tar xvfj config.txz -C /etc/imscp 
+	tar xvfJ www.txz -C /
+	tar xvfJ mail.txz -C /
+	tar xvfJ config.txz -C / 
 	mysql -u root --password=$mypass < imscp.sql
 	rm f /root/imscp.bkp
 	cd /root
