@@ -8,7 +8,7 @@
 #----------------------------------
 # Varibles and functions
 
-read -p 'Which version of i-MSCP do you want to install (i.e. 1.2.0)? :' version
+read -p 'Which version of i-MSCP do you want to install (i.e. 1.2.0)?: ' version
 
 echo '
 --------------------------------
@@ -84,11 +84,12 @@ elif [ $choice -eq 6 ] ; then
 	read -p 'Please enter the MySQL root password: ' mypass
 	mkdir /tmp/imscpbkp
 	cp /root/imscp.bkp /tmp/imscp.bkp
+	cd /tmp
 	tar xvf imscp.bkp
 	cd /tmp/imscpbkp
-	tar xvfj www.txz -c /var/www/virtual
-	tar xvfj mail.txz -c /var/mail/virtual
-	tar xvfj config.txz -c /etc/imscp 
+	tar xvfj www.txz -C /var/www/virtual
+	tar xvfj mail.txz -C /var/mail/virtual
+	tar xvfj config.txz -C /etc/imscp 
 	mysql -u root --password=$mypass < imscp.sql
 	rm f /root/imscp.bkp
 	cd /root
