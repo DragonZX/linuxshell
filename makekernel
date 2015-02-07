@@ -14,7 +14,7 @@ cd /usr/src
 case $skip in
             y|Y*)  echo "Sources download has been skipped" ;;
             n|N*)  wget kernel.org/pub/linux/kernel/v3.x/linux-$ver.tar.xz ;;
-			*) apt-get -y install make kernel-package libncurses5-dev fakeroot wget build-essential bc ;;
+			*) wget kernel.org/pub/linux/kernel/v3.x/linux-$ver.tar.xz ;;
 esac
 tar xvf linux-$ver.tar.xz
 rm linux
