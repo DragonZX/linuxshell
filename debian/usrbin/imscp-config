@@ -27,7 +27,7 @@ read -p "Enter your choice [1-7] " choice
 if [ $choice -eq 1 ] ; then
     #==== Start i-MSCP installer ====
 	aptitude update && aptitude -y safe-upgrade
-    aptitude -y install bzip2 wget tar ca-sertificates xz-utils
+    aptitude -y install bzip2 wget tar ca-certificates xz-utils
     perl /usr/local/src/imscp/imscp-$version/imscp-autoinstall "$@"
     exit			
 	# Redownload i-MSCP
@@ -36,7 +36,7 @@ elif [ $choice -eq 2 ] ; then
     mkdir -p /usr/local/src/imscp
     cd /usr/local/src/imscp
     aptitude update && aptitude -y safe-upgrade
-    aptitude -y install bzip2 wget tar ca-sertificates xz-utils
+    aptitude -y install bzip2 wget tar ca-certificates xz-utils
 	echo '#### DOWNLOADING the latest i-MSCP version ####'
     wget https://github.com/i-MSCP/imscp/archive/$version.tar.gz
     tar xvfz $version.tar.gz
