@@ -1,21 +1,38 @@
 #!/bin/bash
-read -p 'Which version of the kernel do you want to install (at least 3.0.0)?: ' ver
+#Initialisation
+read -p 'Which major version of the kernel do you want to install (2-4)?: ' gen
+if [$gen -eq ""]; then
+gen='3'
+elif [$gen -eq 2]; then
+read -p 'Which version of the kernel do you want to install (recomended 2.6.32.65)?: ' ver
+if [$ver -eq ""]; then
+ver='2.6.32.65'
+fi
+link='https://www.kernel.org/pub/linux/kernel/v2.6/longterm/v2.6.32/linux-$ver.tar.xz'
+else
+read -p 'Which version of the kernel do you want to install (at least $gen.0.1)?: ' ver
+if [$ver -eq ""]; then
+ver='$gen.0.1'
+fi
+link='https://www.kernel.org/pub/linux/kernel/v$gen.x/linux-$ver.tar.xz'
+fi
 read -p 'Skip the download [y/N] ' skip
 read -p 'Do you want to install developer packages? [y/N] ' dev
 read -p 'Do you want to reconfigure the kernel manually? [y/N] ' manual
 read -p 'Do you want to remove the kernel after installation? [y/N] ' remdeb
+#working
 case $dev in
 	y|Y*)  apt-get -y install make kernel-package libncurses5-dev fakeroot wget build-essential bc ;;
 	n|N*)  echo "Developer package installation has been skipped" ;;
 	*) echo "Developer package installation has been skipped" ;;
 esac
-echo Installing linux kernel $ver
 cd /usr/src
 case $skip in
 	y|Y*)  echo "Sources download has been skipped" ;;
-	n|N*)  wget --secure-protocol=auto https://www.kernel.org/pub/linux/kernel/v3.x/linux-$ver.tar.xz ;;
-	*) wget --secure-protocol=auto https://www.kernel.org/pub/linux/kernel/v3.x/linux-$ver.tar.xz ;;
+	n|N*)  wget --secure-protocol=auto $link ;;
+	*) wget --secure-protocol=auto $link ;;
 esac
+echo Installing linux kernel $ver
 tar xvf linux-$ver.tar.xz
 rm linux
 ln -s linux-$ver linux
