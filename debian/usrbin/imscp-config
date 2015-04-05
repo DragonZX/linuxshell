@@ -11,6 +11,7 @@
 read -p 'Which version of i-MSCP do you want to install (i.e. 1.2.0)?: ' version
 if [$version -eq ""]; then
 version='1.2.0'
+fi
 
 echo '
 --------------------------------
