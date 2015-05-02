@@ -41,7 +41,7 @@ if [ $choice -eq 1 ] ; then
 		tar xvfz $version.tar.gz
 	fi
     perl /usr/local/src/imscp/imscp-$version/imscp-autoinstall "$@"
-    exit			
+    exit
 	# Redownload i-MSCP
 elif [ $choice -eq 2 ] ; then
 	rm -fR /usr/local/src/imscp/
@@ -55,7 +55,7 @@ elif [ $choice -eq 2 ] ; then
     cd imscp-$version
     #==== Start i-MSCP installer ====
     perl imscp-autoinstall -r
-    exit			
+    exit
 	# Uninsall i-MSCP
 elif [ $choice -eq 3 ] ; then
 	rm -fR /usr/local/src/imscp/
@@ -69,7 +69,7 @@ elif [ $choice -eq 3 ] ; then
     cd imscp-$version
     #==== Start i-MSCP installer ====
     perl imscp-autoinstall -d
-    exit			
+    exit
 	# Uninsall i-MSCP
 elif [ $choice -eq 4 ] ; then
 	echo '#### UNINSTALLING an i-MSCP ####'
@@ -105,7 +105,7 @@ elif [ $choice -eq 6 ] ; then
 	tar xvfJ mail.txz -C /
 	tar xvfJ config.txz -C / 
 	mysql -u root --password=$mypass < imscp.sql
-	rm f /root/imscp.bkp
+	rm -f /root/imscp.bkp
 	cd /root
 	echo Restoring complete
 	exit
