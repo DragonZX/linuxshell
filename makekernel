@@ -47,7 +47,10 @@ esac
 make-kpkg clean
 fakeroot make-kpkg --initrd kernel_image kernel_headers kernel_doc kernel_source
 cd /usr/src
-dpkg -i linux-image*.deb
+dpkg -i linux-headers-$ver*.deb
+dpkg -i linux-image-$ver*.deb
+dpkg -i linux-doc-$ver*.deb
+
 case $remdeb in
 	y|Y*)  rm -f *.deb ;;
 	n|N*)  echo "Your *.deb files in the /usr/src" ;;
