@@ -1,16 +1,16 @@
 #!/bin/sh
 #
 # i-MSCP ConfigScript Debian
-# Version: 0.4.1
+# Version: 0.4.2
 # License: GPLv2
 # Author : i-MSCP Team, DragonZX
 # Credits: i-MSCP Development Team
 #----------------------------------
 # Varibles and functions
 
-read -p 'Which version of i-MSCP do you want to install (i.e. 1.2.0)?: ' version
+read -p 'Which version of i-MSCP do you want to install (i.e. 1.3.0)?: ' version
 if [$version -eq ""]; then
-version='1.2.0'
+version='1.3.0'
 fi
 
 echo '
