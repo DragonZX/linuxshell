@@ -63,7 +63,7 @@ elif [ $choice -eq 2 ] ; then
     aptitude -y install bzip2 wget tar ca-certificates xz-utils
 		if [ $version = "trunk" ]; then
 		echo '#### Your trunk version is '$trunkver'.x ###';
-		wget https://github.com/i-MSCP/imscp/archive/$trunkverx.x.zip
+		wget https://github.com/i-MSCP/imscp/archive/$trunkver.x.zip
 		unzip $trunkver.x.zip
 		cd imscp-$trunkver.x
 		else
@@ -84,7 +84,7 @@ elif [ $choice -eq 3 ] ; then
     aptitude -y install bzip2 wget tar ca-sertificates xz-utils
 	if [ $version = "trunk" ]; then
 		echo '#### Your trunk version is '$trunkver'.x ###';
-		wget https://github.com/i-MSCP/imscp/archive/$trunkverx.x.zip
+		wget https://github.com/i-MSCP/imscp/archive/$trunkver.x.zip
 		unzip $trunkver.x.zip
 		imscp-$trunkver.x
 		else
