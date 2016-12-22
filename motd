@@ -38,6 +38,9 @@ YEAR=`date +%Y`
 # MB=`sensors | grep temp1 | cut -d":" -f2- | cut -d"(" -f1 | cut -b10-16`
 # CPU0=`sensors | grep "Core 0"| cut -d":" -f2- | cut -d"(" -f1 | cut -b9-16`
 # CPU1=`sensors | grep "Core 1"| cut -d":" -f2- | cut -d"(" -f1 | cut -b9-16`
+  MB_VENDOR=`cat /sys/devices/virtual/dmi/id/board_vendor`
+  MB_NAME=`cat /sys/devices/virtual/dmi/id/board_name`
+  MB_VERSION=`cat /sys/devices/virtual/dmi/id/board_version`
 #
 PROC=`cat /proc/cpuinfo | grep -c ^processor`
 PROCS=`ps -A h | wc -l`
@@ -60,6 +63,7 @@ echo -e $B"| $W Точное время работы системы : $G"$UPHRS 
 echo -e $B"=============================================================================== "$W
 echo -e $B"| $UW Системная информация $RE "$W
 echo -e $B"| $W Имя хоста : $G"$HOSTNAME" "$W
+echo -e $B"| $W Мат плата : $G"$MB_VENDORMB_VENDOR $MB_NAME $MB_VERSION" "$W
 echo -e $B"| $W Ядро : $G"$KERNEL" "$W
 echo -e $B"| $W Процессор : $G"$CPU" "$W
 echo -e $B"| $W Архитектура : $G"$ARCH" "$W
@@ -74,7 +78,7 @@ echo -e $B"| $W Использовано в папке home : $G"$HOMES"% "$W
 echo -e $B"| $W Использовано в папке boot : $G"$BOOT"% "$W
 echo -e $B"=============================================================================== "$W
 echo -e $B"| $UW Информация о сети $RE "$W
-echo -e $B"| $W Сетевае адреса : $G"$IP" "$W
+echo -e $B"| $W Сетевые адреса : $G"$IP" "$W
 echo -e $B"=============================================================================== "$W
 echo -e "\n"$RE
 
