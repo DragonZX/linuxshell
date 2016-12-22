@@ -63,7 +63,7 @@ echo -e $B"| $W Точное время работы системы : $G"$UPHRS 
 echo -e $B"=============================================================================== "$W
 echo -e $B"| $UW Системная информация $RE "$W
 echo -e $B"| $W Имя хоста : $G"$HOSTNAME" "$W
-echo -e $B"| $W Мат плата : $G"$MB_VENDORMB_VENDOR $MB_NAME $MB_VERSION" "$W
+echo -e $B"| $W Мат плата : $G"$MB_VENDOR $MB_NAME $MB_VERSION" "$W
 echo -e $B"| $W Ядро : $G"$KERNEL" "$W
 echo -e $B"| $W Процессор : $G"$CPU" "$W
 echo -e $B"| $W Архитектура : $G"$ARCH" "$W
