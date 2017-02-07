@@ -97,12 +97,17 @@ elif [ $choice -eq 3 ] ; then
     #==== Start i-MSCP installer ====
     perl imscp-autoinstall -d "$@"
     exit
-	# Uninsall i-MSCP
+		# Uninstall i-MSCP
 elif [ $choice -eq 4 ] ; then
 	echo '#### UNINSTALLING an i-MSCP ####'
-    cd /var/www/imscp/engine/setup
-    perl imscp-uninstall
-    exit
+	read -p "Continue (y/n)?" choice
+	case "$choice" in 
+	y|Y ) 	cd /var/www/imscp/engine/setup
+			perl imscp-uninstall
+			exit
+	n|N ) echo "no";;
+	* ) echo "invalid";;
+	esac
 elif [ $choice -eq 5 ] ; then
 	echo '#### Backuping an i-MSCP ####'
 	read -p 'Please enter the MySQL root password: ' mypass
