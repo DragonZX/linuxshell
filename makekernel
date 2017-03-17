@@ -2,7 +2,7 @@
 #Initialisation
 read -p 'Which major version of the kernel do you want to install (2-4)?: ' gen
 if [$gen -eq ""]; then
-gen='3'
+gen='4'
 elif [$gen -eq 2]; then
 read -p 'Which version of the kernel do you want to install (recomended 2.6.32.65)?: ' ver
 if [$ver -eq ""]; then
