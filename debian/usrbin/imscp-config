@@ -110,6 +110,9 @@ elif [ $choice -eq 4 ] ; then
 	esac
 elif [ $choice -eq 5 ] ; then
 	echo '#### Backuping an i-MSCP ####'
+	read -p 'Please enter the superuser login [root]: ' myuser
+	if [$myuser -eq ""]; then $myuser="root"
+	fi
 	read -p 'Please enter the MySQL root password: ' mypass
 	apt-get -y install bzip2 xz-utils
 	mkdir /tmp/imscpbkp
@@ -127,6 +130,9 @@ elif [ $choice -eq 5 ] ; then
 	exit
 elif [ $choice -eq 6 ] ; then
 	echo '#### Restoring an i-MSCP ####'
+	read -p 'Please enter the superuser login [root]: ' myuser
+	if [$myuser -eq ""]; then $myuser="root"
+	fi
 	read -p 'Please enter the MySQL root password: ' mypass
 	apt-get -y install bzip2 xz-utils
 	mkdir /tmp/imscpbkp
@@ -137,7 +143,7 @@ elif [ $choice -eq 6 ] ; then
 	tar xvfJ www.txz -C /
 	tar xvfJ mail.txz -C /
 	tar xvfJ config.txz -C / 
-	mysql -u root --password=$mypass < imscp.sql
+	mysql -u $myuser --password=$mypass < imscp.sql
 	rm -f /root/imscp.bkp
 	cd /root
 	clear
