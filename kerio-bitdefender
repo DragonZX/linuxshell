@@ -1,0 +1,29 @@
+#!/bin/bash
+# This is an offline updater for bitdefender in Kerio Connect
+clear
+read -p 'Choose what you want to do
+1. Init script
+2. Just update bitdefender
+3. Remove virus bases
+:' mode
+
+# Section one - init
+echo "Initialising update script"
+cat  127.0.0.1 gogs.dontexist.com register.kerio.com update.kerio.com control-update.kerio.com bdupdate.kerio.com snort-update.kerio.com >> /etc/hosts
+mkdir /tmp/bitdefender
+cd /tmp/bitdefender
+# this is for history only! http://download.bitdefender.com/updates/update_av32bit/cumulative.zip
+wget http://download.bitdefender.com/updates/update_av64bit/cumulative.zip
+mkdir -p /var/winroute/bitdefender/Plugins/1/
+unzip cumulative.zip -d /var/winroute/bitdefender/Plugins/1/
+ln -s /var/winroute/bitdefender/Plugins/1/bdcore.so.linux-x86_64 /var/winroute/bitdefender/Plugins/1/bdcore.so
+# Section two - update only
+echo "Initialising update script"
+rm -rf /tmp/bitdefender/cumulative.zip
+cd /tmp/bitdefender
+wget http://download.bitdefender.com/updates/update_av64bit/cumulative.zip
+unzip -u cumulative.zip -d /var/winroute/bitdefender/Plugins/1/
+# Section three - remove
+echo "Removing update script"
+rm -rf /tmp/bitdefender
+rm -rf /var/winroute/bitdefender/Plugins/1/
