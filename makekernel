@@ -1,15 +1,8 @@
 #!/bin/bash
 #Initialisation
-read -p 'Which major version of the kernel do you want to install (2-4)?: ' gen
+read -p 'Which major version of the kernel do you want to install (3-4)[4]?: ' gen
 if [$gen -eq ""]; then
 gen='4'
-elif [$gen -eq 2]; then
-read -p 'Which version of the kernel do you want to install (recomended 2.6.32.65)?: ' ver
-if [$ver -eq ""]; then
-ver='2.6.32.65'
-fi
-link="https://www.kernel.org/pub/linux/kernel/v2.6/longterm/v2.6.32/linux-$ver.tar.xz"
-else
 read -p "Which version of the kernel do you want to install (at least $gen.0.1)?: " ver
 if [$ver -eq ""]; then
 ver="$gen.0.1"
