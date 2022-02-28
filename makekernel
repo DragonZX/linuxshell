@@ -1,8 +1,8 @@
 #!/bin/bash
 #Initialisation
-read -p 'Which major version of the kernel do you want to install (3-5)[4]?: ' gen
+read -p 'Which major version of the kernel do you want to install (3-5)[5]?: ' gen
 if [$gen -eq ""]; then
-gen='4'
+gen='5'
 read -p "Which version of the kernel do you want to install (at least $gen.0.1)?: " ver
 if [$ver -eq ""]; then
 ver="$gen.0.1"
